@@ -1,0 +1,45 @@
+{
+  "products": [
+    {
+      "name": "Hipster Ultimate",
+      "price": 50,
+      "image": "https://images.vans.com/is/image/VansEU/VN0A38G1PHN-HERO?$PLP-IMAGE$"
+    },
+    {
+      "name": "On Motion Live",
+      "price": 99,
+      "image": "https://images.vans.com/is/image/VansEU/VN0A3WKT4RQ-HERO?$PLP-IMAGE$"
+    },
+    {
+      "name": "Underground Max",
+      "price": 90,
+      "image": "https://images.vans.com/is/image/VansEU/VN0A4UHZV3M-HERO?$PLP-IMAGE$"
+    },
+    {
+      "name": "Ultimate Model",
+      "price": 75,
+      "image": "https://images.vans.com/is/image/VansEU/VN0A54F3U8Q-HERO?$PLP-IMAGE$"
+    },
+    {
+      "name": "Grand Old",
+      "price": 75,
+      "image": "https://images.vans.com/is/image/VansEU/VN0A3WMAVNG-HERO?$PLP-IMAGE$"
+    },
+    {
+      "name": "Pro Skate",
+      "price": 75,
+      "image": "https://images.vans.com/is/image/VansEU/VN0A3WKT4PF-HERO?$PLP-IMAGE$"
+    },
+    {
+      "name": "Summer edition",
+      "price": 75,
+      "image": "https://images.vans.com/is/image/VansEU/VN0A3WKT4R2-HERO?$PLP-IMAGE$"
+    },
+    {
+      "name": "Winter VAN",
+      "price": 75,
+      "image": "https://images.vans.com/is/image/VansEU/VN0A3MVD4Y5-HERO?$PLP-IMAGE$"
+    }
+  ],
+  "cart": []
+}
