@@ -1,7 +1,7 @@
 <template>
   <div class="productList">
     <h1>{{ msg }}</h1>
-    <div v-for="product in products" :key="product.id">
+    <div v-for="product in productsAvailable" :key="product.id">
        {{product.name}} 
     </div>
 
@@ -28,14 +28,15 @@ export default {
   },
   // Lo cogemos del store user ID está definido en el store
   computed: {
+    /*
     ...mapGetters({
       userId: "userId"
-    }),
+    }),*/
     // Cada vez que agregemos productos, se va a ejecutar este filtro
     // que es el que usamos en la vista para listar los productos
     productsAvailable() {
       return this.products.filter(
-        product => product.state == "available"
+        product => product.price > 0
       )
     }
   },
@@ -47,8 +48,13 @@ export default {
   },
   methods: {
     async getProducts() {
-      const {products} = await fetch("")
-      this.products = products
+      try{
+        const products = await fetch("http://localhost:3000/products", { mode: 'cors'});
+        this.products = await products.json();
+      } catch(e){
+        console.log(e)
+      }
+        
     }
   }
 };
