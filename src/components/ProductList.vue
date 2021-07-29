@@ -1,14 +1,18 @@
 <template>
   <div class="productList">
     <h1>{{ msg }}</h1>
-    <div v-for="product in productsAvailable" :key="product.id">
-       {{product.name}} 
-    </div>
+     <ProductCard
+        v-for="product in productsAvailable"
+        :product="product"
+        :key="product.id"
+      />
 
   </div>
 </template>
 
 <script>
+import ProductCard from '@/components/ProductCard.vue';
+
 export default {
   name: "ProductList",
   props: {
@@ -21,6 +25,9 @@ export default {
     return { 
       products: []
     }
+  },
+  components:{
+    ProductCard
   },
   // Pasa un poco después de que se carga el componente, así carga antes el componente aunque sin contenido
   mounted() {
@@ -54,7 +61,6 @@ export default {
       } catch(e){
         console.log(e)
       }
-        
     }
   }
 };
