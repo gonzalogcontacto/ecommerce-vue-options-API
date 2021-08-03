@@ -1,8 +1,9 @@
 <template>
   <div class="product">
-    <h1>{{product.name}}</h1>
+    <h2>{{product.name}}</h2>
     <img v-bind:src="product.image">
-    <router-link :to="{ name: 'Product', params: {productId: product.id } }">more..</router-link>
+    <button @click="addProductToWhislist"><img src="https://static.thenounproject.com/png/3386813-200.png" alt=""></button>
+
   </div>
 </template>
 

@@ -1,17 +1,19 @@
 <template>
   <div class="productList">
-    <h1>{{ msg }}</h1>
-     <ProductCard
-        v-for="product in productsAvailable"
-        :product="product"
-        :key="product.id"
-      />
+     
+    <div v-for="product in productsAvailable" :key="product.id">
+        <h2>{{product.name}}</h2>
+        <img v-bind:src="product.image">
+        <button @click="saveWhislisHandler(product)"><img src="https://static.thenounproject.com/png/3386813-200.png" class="whislist" alt=""></button>
+    </div>
+
 
   </div>
 </template>
 
 <script>
-import ProductCard from '@/components/ProductCard.vue';
+
+import whislist from '../mixins/whislist'
 
 export default {
   name: "ProductList",
@@ -21,29 +23,22 @@ export default {
       default: 3,
     }
   },
-  data() {
-    return { 
-      products: []
+  data(){ 
+    return {
+      products:[]
     }
-  },
-  components:{
-    ProductCard
   },
   // Pasa un poco después de que se carga el componente, así carga antes el componente aunque sin contenido
   mounted() {
     this.getProducts()
   },
-  // Lo cogemos del store user ID está definido en el store
+  mixins:[whislist],
   computed: {
-    /*
-    ...mapGetters({
-      userId: "userId"
-    }),*/
     // Cada vez que agregemos productos, se va a ejecutar este filtro
     // que es el que usamos en la vista para listar los productos
     productsAvailable() {
       return this.products.filter(
-        product => product.price > 0
+        product => product.price > 20
       )
     }
   },
@@ -53,7 +48,7 @@ export default {
       this.getProducts()
     }
   },
-  methods: {
+  methods: {    
     async getProducts() {
       try{
         const products = await fetch("http://localhost:3000/products", { mode: 'cors'});
@@ -61,6 +56,22 @@ export default {
       } catch(e){
         console.log(e)
       }
+    },
+    saveWhislisHandler(product) {
+      this.saveWhislist(product).then((response) => {
+        console.log(response)
+        if (confirm('Are you sure you want to save this thing into the database?')) {
+          // Save it!
+          alert('Thing was saved to the database.');
+        } else {
+          // Do nothing!
+          console.log('Thing was not saved to the database.');
+        }
+        //document.getElementsByClassName('whislist').addClass('saved');
+      }).catch((error)=> {
+        console.log(error); 
+        alert('something went wrong')
+      })
     }
   }
 };
@@ -70,5 +81,15 @@ export default {
 <style scoped lang="scss">
   h1 {
     color: red;
+  }
+  button{
+    background: transparent;
+    border: none;
+    img {
+      max-width: 40px;
+    }
+    img.saved{
+          filter: invert(48%) sepia(13%) saturate(3507%) hue-rotate(303deg) brightness(95%) contrast(80%);
+    }
   }
 </style>
