@@ -1,15 +1,9 @@
 <template>
   <div class="product">
-<<<<<<< HEAD
     <h2>{{product.name}}</h2>
     <img v-bind:src="product.image">
-    <button @click="addProductToWhislist"><img src="https://static.thenounproject.com/png/3386813-200.png" alt=""></button>
+    <button @click="handlerWhislist"><img src="https://static.thenounproject.com/png/3386813-200.png" alt=""></button>
 
-=======
-    <h1>producto {{product.name}}</h1>
-    <img v-bind:src="product.image">
-    <button @click="handlerWhislist(product)">Agregar a whislist</button>
->>>>>>> integration-test-mocking-mixins
   </div>
 </template>
 

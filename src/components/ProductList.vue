@@ -47,24 +47,7 @@ export default {
       this.getProducts()
     }
   },
-  methods: {    
-    saveWhislisHandler(product) {
-      this.saveWhislist(product).then((response) => {
-        console.log(response)
-        if (confirm('Are you sure you want to save this thing into the database?')) {
-          // Save it!
-          alert('Thing was saved to the database.');
-        } else {
-          // Do nothing!
-          console.log('Thing was not saved to the database.');
-        }
-        //document.getElementsByClassName('whislist').addClass('saved');
-      }).catch((error)=> {
-        console.log(error); 
-        alert('something went wrong')
-      })
-    }
-  }
+  methods: {}
 };
 </script>
 
