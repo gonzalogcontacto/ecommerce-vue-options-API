@@ -1,19 +1,17 @@
 <template>
   <div class="productList">
-     
-    <div v-for="product in productsAvailable" :key="product.id">
-        <h2>{{product.name}}</h2>
-        <img v-bind:src="product.image">
-        <button @click="saveWhislisHandler(product)"><img src="https://static.thenounproject.com/png/3386813-200.png" class="whislist" alt=""></button>
-    </div>
-
-
+     <ProductCard
+        v-for="product in productsAvailable"
+        :product="product"
+        :key="product.id"
+      />
   </div>
 </template>
 
 <script>
-
-import whislist from '../mixins/whislist'
+import ProductCard from '@/components/ProductCard.vue';
+import whislistMixon from '../mixins/whislist'
+import productsMixin from '../mixins/products'
 
 export default {
   name: "ProductList",
@@ -28,14 +26,15 @@ export default {
       products:[]
     }
   },
-  // Pasa un poco después de que se carga el componente, así carga antes el componente aunque sin contenido
-  mounted() {
-    this.getProducts()
+  mixins: [whislistMixon, productsMixin],
+  components:{
+    ProductCard
   },
-  mixins:[whislist],
+  async mounted() {
+    this.products = await this.getProducts()
+    console.log(this.products)
+  },
   computed: {
-    // Cada vez que agregemos productos, se va a ejecutar este filtro
-    // que es el que usamos en la vista para listar los productos
     productsAvailable() {
       return this.products.filter(
         product => product.price > 20
@@ -49,14 +48,6 @@ export default {
     }
   },
   methods: {    
-    async getProducts() {
-      try{
-        const products = await fetch("http://localhost:3000/products", { mode: 'cors'});
-        this.products = await products.json();
-      } catch(e){
-        console.log(e)
-      }
-    },
     saveWhislisHandler(product) {
       this.saveWhislist(product).then((response) => {
         console.log(response)

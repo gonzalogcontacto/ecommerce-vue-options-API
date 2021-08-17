@@ -1,5 +1,9 @@
 <template>
   <div class="home">
+<<<<<<< HEAD
+=======
+    
+>>>>>>> integration-test-mocking-mixins
     <ProductList msg="Listado de productos!" />
   </div>
 </template>

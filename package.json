@@ -5,18 +5,31 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test": "./node_modules/.bin/jest",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+<<<<<<< HEAD
     "mosha-vue-toastify": "^1.0.17",
     "vue": "^3.0.0",
+=======
+    "jest": "^27.0.6",
+    "jest-canvas-mock": "^2.3.1",
+    "node-fetch": "^2.6.1",
+    "vue": "^3.0.2",
+>>>>>>> integration-test-mocking-mixins
     "vue-router": "^4.0.0-0",
+    "vue-server-renderer": "^2.6.14",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/user-event": "^13.2.1",
+    "@testing-library/vue": "^6.4.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-e2e-cypress": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
@@ -24,9 +37,10 @@
     "@vue/cli-plugin-unit-jest": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/compiler-sfc": "^3.0.2",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/test-utils": "^2.0.0-0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
@@ -35,7 +49,8 @@
     "prettier": "^2.2.1",
     "sass-loader": "^8.0.2",
     "typescript": "~3.9.3",
-    "vue-jest": "^5.0.0-0"
+    "vue-jest": "^5.0.0-alpha.10",
+    "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
     "root": true,
@@ -54,7 +69,7 @@
     "overrides": [
       {
         "files": [
-          "**/__tests__/*.{j,t}s?(x)",
+          "**/__tests__/*.{j,t}s?(x)|**/__tests__/*.(js|jsx|ts|tsx))",
           "**/tests/unit/**/*.spec.{j,t}s?(x)"
         ],
         "env": {
@@ -72,6 +87,9 @@
     "preset": "@vue/cli-plugin-unit-jest",
     "transform": {
       "^.+\\.vue$": "vue-jest"
-    }
+    },
+    "testMatch": [
+      "**/__tests__/integration/*.[jt]s?(x)"
+    ]
   }
 }

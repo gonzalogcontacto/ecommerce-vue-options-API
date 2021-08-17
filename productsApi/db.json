@@ -57,6 +57,7 @@
     },
     {
       "id": 5
+<<<<<<< HEAD
     },
     {
       "id": 6
@@ -123,6 +124,8 @@
     },
     {
       "id": 27
+=======
+>>>>>>> integration-test-mocking-mixins
     }
   ]
 }
