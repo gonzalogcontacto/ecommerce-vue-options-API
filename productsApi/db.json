@@ -41,5 +41,22 @@
       "image": "https://images.vans.com/is/image/VansEU/VN0A3MVD4Y5-HERO?$PLP-IMAGE$"
     }
   ],
-  "cart": []
+  "cart": [],
+  "whislist": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    }
+  ]
 }

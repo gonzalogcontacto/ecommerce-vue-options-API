@@ -1,17 +1,17 @@
 <template>
   <div class="productList">
-    <h1>{{ msg }}</h1>
      <ProductCard
         v-for="product in productsAvailable"
         :product="product"
         :key="product.id"
       />
-
   </div>
 </template>
 
 <script>
 import ProductCard from '@/components/ProductCard.vue';
+import whislistMixon from '../mixins/whislist'
+import productsMixin from '../mixins/products'
 
 export default {
   name: "ProductList",
@@ -26,43 +26,21 @@ export default {
       products: []
     }
   },
+  mixins: [whislistMixon, productsMixin],
   components:{
     ProductCard
   },
-  // Pasa un poco después de que se carga el componente, así carga antes el componente aunque sin contenido
-  mounted() {
-    this.getProducts()
+  async mounted() {
+    this.products = await this.getProducts()
+    console.log(this.products)
   },
-  // Lo cogemos del store user ID está definido en el store
   computed: {
-    /*
-    ...mapGetters({
-      userId: "userId"
-    }),*/
-    // Cada vez que agregemos productos, se va a ejecutar este filtro
-    // que es el que usamos en la vista para listar los productos
     productsAvailable() {
       return this.products.filter(
         product => product.price > 0
       )
     }
   },
-  // Side effect cuando cambia la ruta
-  watch: {
-    $route() {
-      this.getProducts()
-    }
-  },
-  methods: {
-    async getProducts() {
-      try{
-        const products = await fetch("http://localhost:3000/products", { mode: 'cors'});
-        this.products = await products.json();
-      } catch(e){
-        console.log(e)
-      }
-    }
-  }
 };
 </script>
 

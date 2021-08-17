@@ -1,22 +1,34 @@
 <template>
   <div class="product">
-    <h1>{{product.name}}</h1>
+    <h1>producto {{product.name}}</h1>
     <img v-bind:src="product.image">
-    <router-link :to="{ name: 'Product', params: {productId: product.id } }">more..</router-link>
+    <button @click="handlerWhislist(product)">Agregar a whislist</button>
   </div>
 </template>
 
 <script>
+import whislistMixin from '../mixins/whislist';
+
 export default {
   name: "ProductCard",
   props: {
     product: {
       type: Object,
-      required: true
+      required: true  
     },
   },
   data() {
     return { 
+    }
+  },
+  mixins: [whislistMixin],
+  methods: {
+    handlerWhislist(product) {
+      if(confirm('¿Estas seguro?')){
+        this.addProductToWhislist(product).then(() => {
+          alert('Producto guardo en whislist')
+        }).catch(() => alert('Something went wrong'))
+      }
     }
   }
 };
@@ -25,6 +37,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   h1 {
-    color: red;
+    color: black;
   }
 </style>
